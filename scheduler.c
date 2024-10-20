@@ -134,9 +134,13 @@ void schedule(void) {
 }
 
 void destroy(void) {
-    
-    struct thread *curr = thread_link.head->next;
 
+    struct thread *curr = thread_link.head;
+    if (!curr) {
+        return;
+    }
+
+    curr = curr->next;
     while (curr != thread_link.head) {
         struct thread *next = curr->next;
         free(curr->stack.memory_);
