@@ -154,6 +154,27 @@ void destroy(void) {
     free(thread_link.current);
 }
 
+/*  This function will be called when SIGALRM is triggered. 
+    It should yield the current thread to allow a context switch. */
+
+void alarm_handler(int signum) {
+
+    (void)signum;
+    scheduler_yield();
+}
+
+void set_alarm(void) {
+
+    signal(SIGALRM, alarm_handler);
+    alarm(1);
+}
+
+void clear_alarm(void) {
+    
+    signal(SIGALRM, SIG_DFL);
+    alarm(0);
+}
+
 /**
  * Called to execute the user threads previously created by calling
  * scheduler_create().
@@ -169,8 +190,10 @@ void destroy(void) {
 void scheduler_execute(void) {
 
     setjmp(thread_link.ctx);
-    schedule();
     /* extra credits */
+    set_alarm();
+    schedule();   
+    clear_alarm();
     destroy();
 }
 
