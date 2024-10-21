@@ -35,7 +35,7 @@ struct thread {
         char *memory_; 
     } stack;
 
-    enum{
+    enum {
         INIT, 
         RUNNING, 
         SLEEPING, 
@@ -154,8 +154,8 @@ void destroy(void) {
     free(thread_link.current);
 }
 
-/*  This function will be called when SIGALRM is triggered. 
-    It should yield the current thread to allow a context switch. */
+/*  alarm_handler will be called when SIGALRM is triggered every second. 
+    It yield the current thread to allow a context switch. */
 
 void alarm_handler(int signum) {
 
