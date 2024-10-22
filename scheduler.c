@@ -73,12 +73,12 @@ int scheduler_create(scheduler_fnc_t fnc, void *arg) {
     new_thread->fnc = fnc;
     new_thread->arg = arg;
 
-    new_thread->stack.memory = malloc(SZ_STACK + PAGE_SIZE);
-    if (!new_thread->stack.memory) {
+    new_thread->stack.memory_ = malloc(SZ_STACK + PAGE_SIZE);
+    if (!new_thread->stack.memory_) {
         TRACE("stack memory malloc failed");
         return -1;
     }
-    new_thread->stack.memory = memory_align(new_thread->stack.memory, PAGE_SIZE);
+    new_thread->stack.memory = memory_align(new_thread->stack.memory_, PAGE_SIZE);
 
     /* add the new thread behind current thread */
     /* make the link a loop so it is convenient traverse the whole link */
