@@ -23,7 +23,7 @@
 
 /* research the above Needed API and design accordingly */
 
-#define SZ_STACK 1048576
+#define SZ_STACK 4096
 
 struct thread {
 
