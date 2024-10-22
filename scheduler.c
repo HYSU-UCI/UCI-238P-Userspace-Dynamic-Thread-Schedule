@@ -159,8 +159,10 @@ void destroy(void) {
 
 void alarm_handler(int signum) {
 
-    (void)signum;
-    scheduler_yield();
+    /* (void)signum; */
+    if (signum == SIGALRM) {
+        scheduler_yield();
+    }    
 }
 
 void set_alarm(void) {
