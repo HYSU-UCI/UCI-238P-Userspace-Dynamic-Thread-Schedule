@@ -148,10 +148,10 @@ void destroy(void) {
         curr = next;
     }
 
-    thread_link.head = NULL;
-    thread_link.current = NULL;
+    free(thread_link.head->stack.memory_);
     free(thread_link.head);
-    free(thread_link.current);
+    thread_link.head = NULL;
+    thread_link.current = NULL;    
 }
 
 /*  alarm_handler will be called when SIGALRM is triggered every second. 
