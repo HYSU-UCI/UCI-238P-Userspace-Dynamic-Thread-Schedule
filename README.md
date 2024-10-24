@@ -1,4 +1,4 @@
-# 238P OS Project1: Userspace-Dynamic-Thread-Schedule
+# 238P OS Project2: Userspace-Dynamic-Thread-Schedule
 
 ## Overview
 
